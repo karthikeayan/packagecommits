@@ -1,51 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Latest Package Viewer</title>
+  <title>Package Commit Viewer</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <div class="container">
-	<center><h1>AIC Latest Packages Viewer</h1></center>
+	<center><h1>Package Commit Viewer</h1></center>
 	<br>
 	<%= form_tag("/fetch", method: "post") do %>	
 		<div class="row">
 			<div class="col-md-3">
-				<fieldset id="version">
-					<label style="padding-right: 10px;">AIC Version</label>
-					<label class="radio-inline">
-		    			<input type="radio" name="repo[version]" id="repo_version" value="2.5" <%= if @version=="2.5" then "checked" end%>> 2.5
-
-					</label>
-					<label class="radio-inline">
-		    			<input type="radio" name="repo[version]" id="repo_version" value="3.0"  <%= if @version=="3.0" then "checked" end%>> 3.0
-					</label>
-				</fieldset>
 			</div>
 			<div class="col-md-9">
-				<fieldset id="service">
-					<label style="padding-right: 10px;">Repository</label>
-					<label class="radio-inline">
-		    			<input type="radio" name="repo[service]" id="repo_service" value="aic-mos" <%= if @service=="aic-mos" then "checked" end%>> aic-mos
-					</label>
-					<label class="radio-inline">
-		    			<input type="radio" name="repo[service]" id="repo_service" value="aic-orm" <%= if @service=="aic-orm" then "checked" end%>> aic-orm
-					</label>
-					<label class="radio-inline">
-		    			<input type="radio" name="repo[service]" id="repo_service" value="aic-vfd" <%= if @service=="aic-vfd" then "checked" end%>> aic-vfd
-					</label>
-					<label class="radio-inline">
-		    			<input type="radio" name="repo[service]" id="repo_service" value="aic-ops" <%= if @service=="aic-ops" then "checked" end%>> aic-ops
-					</label>
-					<label class="radio-inline">
-		    			<input type="radio" name="repo[service]" id="repo_service" value="aic-astra" <%= if @service=="aic-astra" then "checked" end%>> aic-astra
-					</label>
-					<label class="radio-inline">
-		    			<input type="radio" name="repo[service]" id="repo_service" value="aic-plugins" <%= if @service=="aic-plugins" then "checked" end%>> aic-plugins
-					</label>
-				</fieldset>
 			</div>
 		</div>
 		<br>
@@ -54,12 +23,6 @@
 		</div>
 	<% end %>
 	<br>
-	<div class="row">
-		<div class="col-md-6"><h4><center>System Test Repo</center></h4></div>
-		<div class="col-md-6"><h4><center>Production Repo</center></h4></div>
-		<!-- rgb(153,255,204); 
-		style="background-color:lavender; -->
-	</div>
 	<%= yield %>
 </div>
 </body>

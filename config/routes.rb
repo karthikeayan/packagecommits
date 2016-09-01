@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'showrepos#index'
+  root 'showcommits#fetch'
 
-  post "/fetch" => "showrepos#fetch"
-  get "/fetch" => "showrepos#fetch"
+  post "/fetch" => "showcommits#fetch"
+  get "/fetch" => "showcommits#fetch"
 
 end

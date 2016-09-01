@@ -1,0 +1,35 @@
+<div class="row">
+<!--	<div class="col-md-12 well"> <br> -->
+          <table class = "table table-striped">
+            <thead>
+            <tr>
+              <th> # </th>
+              <th> User Story </th>
+              <th> Project </th>
+              <th> Branch </th>
+              <th> Timestamp </th>
+              <th> Commit ID </th>
+              <th> E-Mail </th>
+              <th> Comment </th>
+              <th> Package </th>
+            </tr>
+            </thead>
+           
+            <% @commits.each do |record| %>
+              <tbody>
+                <tr>
+                  <td> <%= record[0] %> </td>
+                  <td> <%= record[1]['userstory'] %> </td>
+                  <td> <%= record[1]['projectname'] %> </td>
+                  <td> <%= record[1]['branchname'] %> </td>
+                  <td> <%= record[1]['timestamp'] %> </td>
+                  <td> <%= record[1]['commitid'] %> </td>
+                  <td> <%= record[1]['email'] %> </td>
+                  <td> <%= record[1]['comment'] %> </td>
+                  <td> <%= record[1]['packagename'] %> </td>
+                </tr>
+              </tbody>
+            <% end %>
+          </table>
+<!--        </div> -->
+</div>
