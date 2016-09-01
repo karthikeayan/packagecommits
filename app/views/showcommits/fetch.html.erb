@@ -1,5 +1,26 @@
+<div class="container">
+        <center><h1>Package Commit Viewer</h1></center>
+        <br>
+        <%= form_tag("/fetch", method: "post") do %>
+                <div class="row">
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Branch
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href="#">3.0.1</a></li>
+    </ul>
+  </div>
+                </div>
+                <br>
+<!--
+                <div class="row">
+                        <center><button type="submit" class="btn btn-primary">Submit</button></center>
+                </div>
+-->
+        <% end %>
+        <br>
+
 <div class="row">
-<!--	<div class="col-md-12 well"> <br> -->
           <table class = "table table-striped">
             <thead>
             <tr>
@@ -31,5 +52,5 @@
               </tbody>
             <% end %>
           </table>
-<!--        </div> -->
+</div>
 </div>

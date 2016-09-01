@@ -12,7 +12,6 @@ class ShowcommitsController < ApplicationController
       conn = Mysql.new 'localhost', 'root', 'root', 'dashboard'
       rs = conn.query 'SELECT * FROM merge_data'
       n_rows = rs.num_rows
-      puts "There are #{n_rows} rows in the result set"
     
       (1..n_rows).each do |i|
         @commits[i] = {}
