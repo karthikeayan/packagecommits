@@ -1,27 +1,29 @@
 <div class="container">
         <center><h1>Package Commit Viewer</h1></center>
         <br>
-        <%= form_tag("/fetch", method: "post") do %>
+        <%= form_tag("/fetch", method: "post", id: "submitForm") do %>
+        <input class="span2" id="branch_name" name="branch_name" type="hidden" >
                 <div class="row">
   <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Branch
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" onchange='this.form.submit()'>Select Branch
     <span class="caret"></span></button>
     <ul class="dropdown-menu">
-      <li><a href="#">3.0.1</a></li>
+      <% @branches.each do |branch| %>
+      <li onclick="$('#branch_name').val('<%= branch %>'); $('#submitForm').submit()"><a href="#"><%= branch %></a></li>
+      <% end %>
     </ul>
   </div>
                 </div>
-                <br>
 <!--
                 <div class="row">
-                        <center><button type="submit" class="btn btn-primary">Submit</button></center>
+                        <noscript><button type="submit" class="btn btn-primary" type="hidden">Submit</button>
                 </div>
 -->
         <% end %>
         <br>
 
 <div class="row">
-          <table class = "table table-striped">
+          <table class="table table-striped" id="commitstable">
             <thead>
             <tr>
               <th> # </th>
@@ -54,3 +56,6 @@
           </table>
 </div>
 </div>
+<script type="text/javascript">
+  $("table").tableExport();
+</script>

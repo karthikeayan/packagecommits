@@ -8,10 +8,30 @@ class ShowcommitsController < ApplicationController
 
   def fetch
     @commits = {}
+    @branches = []
+    logger.debug 'branch_name: ' + params[:branch_name].inspect
+    
     begin
-      conn = Mysql.new 'localhost', 'root', 'root', 'dashboard'
-      rs = conn.query 'SELECT * FROM merge_data'
+      conn = Mysql.new 'localhost', AUTHENTICATION['username'], AUTHENTICATION['password'], AUTHENTICATION['database']
+
+      rs = conn.query 'SELECT DISTINCT branchname FROM merge_data'
       n_rows = rs.num_rows
+      (1..n_rows).each do |i|
+        @branches.push(rs.fetch_row)
+      end
+      @branches = @branches.flatten
+      logger.debug 'branches: ' + @branches.inspect
+
+      rs = nil
+      if params[:branch_name].nil?
+        rs = conn.query 'SELECT * FROM merge_data'
+      else
+        query = 'SELECT * FROM merge_data where branchname="' + params[:branch_name] + '"'
+        rs = conn.query query
+      end
+
+      n_rows = rs.num_rows
+      logger.debug 'rs: ' + rs.inspect
     
       (1..n_rows).each do |i|
         @commits[i] = {}
@@ -29,10 +49,11 @@ class ShowcommitsController < ApplicationController
         @commits[i]['packagename'] = tmp_array[7]
       end
     rescue Mysql::Error => e
-      puts e.errno
-      puts e.error
+      logger.error e.errno
+      logger.error e.error
     ensure
       conn.close if conn
     end
+    logger.debug 'commits: ' + @commits.inspect
   end
 end

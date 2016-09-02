@@ -1,0 +1,8 @@
+development:
+  username: 'root'
+  password: 'root'
+  database: 'dashboard'
+production:
+  username: 'root'
+  password: 'root'
+  database: 'dashboard'
